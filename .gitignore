@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+#server
+/api-server
+
 # testing
 /coverage
 
