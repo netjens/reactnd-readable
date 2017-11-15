@@ -1,7 +1,7 @@
 import C from '../constants'
 import { combineReducers } from 'redux'
 
-export const fetching = (state = [], action) =>{
+export const categories = (state = [], action) =>{
     switch(action.type){
         case C.FETCH_CATEGORIES:
             return action.payload
@@ -13,4 +13,4 @@ export const fetching = (state = [], action) =>{
 
 }
 
-export default combineReducers({fetching})
+export default combineReducers({categories})

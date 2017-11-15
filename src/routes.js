@@ -1,10 +1,10 @@
 import React from 'react'
-import { App} from './components/ui/App'
+import ReadableApp from './components/containers/ReadableApp'
 import { BrowserRouter, Route } from 'react-router-dom'
 
 const routes = (
     <BrowserRouter>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={ReadableApp} />
 
     </BrowserRouter>
 )

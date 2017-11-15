@@ -1,7 +1,7 @@
 import C from './constants'
 import * as readableAPI from './readableAPI'
 
-export function getCategories() {
+export function loadCategories() {
     let result = []
     readableAPI
         .getAllCategories()
@@ -12,6 +12,6 @@ export function getCategories() {
 
     return {
         type: C.FETCH_CATEGORIES,
-        payload: categories
+        payload: result
     }
 }
