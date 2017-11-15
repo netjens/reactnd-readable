@@ -9,7 +9,7 @@ class ReadableApp extends Component {
   }
 
  submit(e) {
-    e.preventDefault()
+
     this.props.onLoadCategories()
   }
 
