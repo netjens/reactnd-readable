@@ -21,6 +21,7 @@ export function loadPosts() {
     return function (dispatch) {
         readableAPI.getAllPosts()
             .then(posts => {
+                console.log("posts " + posts);
                 dispatch({
                     type: C.FETCH_POSTS,
                     payload: posts

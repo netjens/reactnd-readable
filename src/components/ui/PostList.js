@@ -5,6 +5,7 @@ import PostRow from './PostRow'
 class PostList extends Component {
 
  componentWillMount() {
+     console.log(this.props)
     this.props.onLoadPosts()
   }
 

@@ -3,7 +3,7 @@ import ReadableApp from '../ui/ReadableApp'
 import { withRouter } from 'react-router'
 import { loadCategories } from '../../actions'
 
-function mapStatetoProps(state, props) {
+function mapStateToProps(state, props) {
     return ({
         categories: state.categories
     })
@@ -19,6 +19,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-const Container = connect(mapStatetoProps, mapDispatchToProps)(ReadableApp)
+const Container = connect(mapStateToProps, mapDispatchToProps)(ReadableApp)
 
 export default withRouter(Container)
