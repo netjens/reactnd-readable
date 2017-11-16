@@ -2,16 +2,29 @@ import C from './constants'
 import * as readableAPI from './readableAPI'
 
 export function loadCategories() {
-    let result = []
-    readableAPI
-        .getAllCategories()
-        .then((categories) => {
-            result = categories
+    return function (dispatch) {
 
-        })
+        readableAPI
+            .getAllCategories()
+            .then(categories => {
+                dispatch({
+                    type: C.FETCH_CATEGORIES,
+                    payload: categories
+                })
+            })
 
-    return {
-        type: C.FETCH_CATEGORIES,
-        payload: result
     }
+
+
+
+
+
+    /*.then(categories => (
+        {
+            type: C.FETCH_CATEGORIES,
+            payload: categories
+        }
+    ));*/
+
 }
+

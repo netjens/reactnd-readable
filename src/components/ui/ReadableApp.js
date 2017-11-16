@@ -4,13 +4,12 @@ import React, { Component } from 'react'
 
 class ReadableApp extends Component {
 
-  componentDidMount() {
 
-  }
 
- submit(e) {
-
+ submit = (e) => {
+    e.preventDefault()
     this.props.onLoadCategories()
+
   }
 
   render() {
@@ -20,7 +19,7 @@ class ReadableApp extends Component {
 
           <h1 className="App-title">Readable App</h1>
         </header>
-        <p className="App-intro">
+
           <h2>Categories</h2>
 
           <ul>
@@ -33,13 +32,13 @@ class ReadableApp extends Component {
                   <li key={category.name}>{category.name}
                   </li>
                 ))
-            }}
+            }
 
             </ul>
-          <form onSubmit={this.submit()} >
+          <form onSubmit={this.submit} >
             <button>test</button>
           </form>
-        </p>
+    
       </div>
     )
   }
