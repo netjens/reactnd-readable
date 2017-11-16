@@ -15,16 +15,17 @@ export function loadCategories() {
 
     }
 
+}
 
-
-
-
-    /*.then(categories => (
-        {
-            type: C.FETCH_CATEGORIES,
-            payload: categories
-        }
-    ));*/
-
+export function loadPosts() {
+    return function (dispatch) {
+        readableAPI.getAllPosts()
+            .then(posts => {
+                dispatch({
+                    type: C.FETCH_POSTS,
+                    payload: posts
+                })
+            })
+    }
 }
 

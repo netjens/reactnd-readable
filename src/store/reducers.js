@@ -4,13 +4,20 @@ import { combineReducers } from 'redux'
 export const categories = (state = [], action) =>{
     switch(action.type){
         case C.FETCH_CATEGORIES:
-            return action.payload
+            return action.payload;
         default:
-           return state
+           return state;
     }
-
-
 
 }
 
-export default combineReducers({categories})
+export const allPosts = (state=[],action) =>{
+    switch(action.type){
+        case C.FETCH_POSTS:
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export default combineReducers({categories,allPosts});
