@@ -18,6 +18,7 @@ class PostList extends Component {
                         <th>Author</th>
                         <th>Number of commments</th>
                         <th>Current score</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
