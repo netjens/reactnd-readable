@@ -18,12 +18,12 @@ class PostList extends Component {
                         <th>Title</th>
                         <th>Author</th>
                         <th>Number of commments</th>
-                        <th>current score</th>
+                        <th>Current score</th>
                     </tr>
                 </thead>
                 <tbody>
                     {this.props.posts.map((post,i)=>
-                        <PostRow key={i} {...post} />
+                        <PostRow key={i} {...post} onChangeScore={this.props.onChangeScore} />
                     )}
                 </tbody>
             </table>

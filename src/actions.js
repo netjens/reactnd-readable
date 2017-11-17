@@ -21,12 +21,20 @@ export function loadPosts() {
     return function (dispatch) {
         readableAPI.getAllPosts()
             .then(posts => {
-                console.log("posts " + posts);
                 dispatch({
                     type: C.FETCH_POSTS,
                     payload: posts
                 })
             })
     }
+}
+
+export function changeScore(id,score) {
+    return (
+        {
+            type: C.CHANGE_SCORE,
+            payload: {id,score}
+        }
+    );
 }
 

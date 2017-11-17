@@ -1,0 +1,14 @@
+.thumbsUp {
+  color: black;
+}
+.thumbsDown {
+  color: black;
+}
+.thumbsUp:hover {
+  color: green;
+  cursor: pointer;
+}
+.thumbsDown:hover {
+  color: red;
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import reducer from './reducers'
+/*import reducer from './reducers'
 import { createStore, applyMiddleware, compose } from 'redux'
 
 
@@ -20,4 +20,4 @@ const store = createStore(
   )
 )
 
-export default store
+export default store*/
