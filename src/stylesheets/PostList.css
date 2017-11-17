@@ -12,3 +12,11 @@
   color: red;
   cursor: pointer;
 }
+
+.delete {
+  color: red;
+}
+
+.delete:hover {
+  cursor: pointer;
+}

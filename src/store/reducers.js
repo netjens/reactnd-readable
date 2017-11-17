@@ -16,7 +16,7 @@ export const allPosts = (state = [], action) => {
         case C.FETCH_POSTS:
             return action.payload;
         case C.CHANGE_SCORE:
-            
+
             const updatedPost = action.payload;
             return state.map(function (post) {
                 if (post.id === updatedPost.id) {
@@ -25,6 +25,8 @@ export const allPosts = (state = [], action) => {
                 return post;
             }
             )
+        case C.DELETE_POST:
+            return state.filter( post => action.id !== post.id);
 
 
 

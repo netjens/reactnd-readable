@@ -5,7 +5,6 @@ import PostRow from './PostRow'
 class PostList extends Component {
 
  componentWillMount() {
-     console.log(this.props)
     this.props.onLoadPosts()
   }
 
@@ -23,7 +22,7 @@ class PostList extends Component {
                 </thead>
                 <tbody>
                     {this.props.posts.map((post,rowIndex)=>
-                        <PostRow key={rowIndex} {...post} onChangeScore={this.props.onChangeScore} />
+                        <PostRow key={rowIndex}  {...post} {...this.props} />
                     )}
                 </tbody>
             </table>

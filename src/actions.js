@@ -32,12 +32,26 @@ export function loadPosts() {
 export function changeScore(id, vote) {
     return function (dispatch) {
         readableAPI.vote(id, vote).then(post => {
-            console.log("updatedPost=" + JSON.stringify(post));
             dispatch({
                 type: C.CHANGE_SCORE,
                 payload: post
             })
         });
     }
+}
+
+export function deletePost(id){
+    return function(dispatch){
+        readableAPI.deletePost(id).then(
+            (post)=>{
+                dispatch({
+                    type: C.DELETE_POST,
+                    id: post.id
+                })
+            }
+
+        )
+    }
+
 }
 
