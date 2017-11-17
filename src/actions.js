@@ -29,12 +29,15 @@ export function loadPosts() {
     }
 }
 
-export function changeScore(id,score) {
-    return (
-        {
-            type: C.CHANGE_SCORE,
-            payload: {id,score}
-        }
-    );
+export function changeScore(id, vote) {
+    return function (dispatch) {
+        readableAPI.vote(id, vote).then(post => {
+            console.log("updatedPost=" + JSON.stringify(post));
+            dispatch({
+                type: C.CHANGE_SCORE,
+                payload: post
+            })
+        });
+    }
 }
 

@@ -22,8 +22,8 @@ class PostList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.posts.map((post,i)=>
-                        <PostRow key={i} {...post} onChangeScore={this.props.onChangeScore} />
+                    {this.props.posts.map((post,rowIndex)=>
+                        <PostRow key={rowIndex} {...post} onChangeScore={this.props.onChangeScore} />
                     )}
                 </tbody>
             </table>

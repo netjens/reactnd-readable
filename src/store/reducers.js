@@ -16,11 +16,11 @@ export const allPosts = (state = [], action) => {
         case C.FETCH_POSTS:
             return action.payload;
         case C.CHANGE_SCORE:
-            const { id, score } = action.payload;
-
+            
+            const updatedPost = action.payload;
             return state.map(function (post) {
-                if (post.id === id) {
-                    post.voteScore += score;
+                if (post.id === updatedPost.id) {
+                    return updatedPost;
                 }
                 return post;
             }
