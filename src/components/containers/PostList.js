@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
-import { loadPosts } from '../../actions'
-import {changeScore} from '../../actions'
-import {deletePost} from '../../actions'
+import { loadPosts,changeScore,deletePost,order,sortPosts} from '../../actions'
+
 import PostList from '../ui/PostList'
 import { withRouter } from 'react-router'
 
 const mapStateToProps = (state, props) =>
 ({
-    posts: state.allPosts
+    posts: state.allPosts,
+    order: state.order
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch) =>
         {
         onLoadPosts: () => dispatch( loadPosts()),
         onChangeScore: (id,value) => dispatch(changeScore(id,value)),
-        onDeletePost: (id) => dispatch(deletePost(id))
-
+        onDeletePost: (id) => dispatch(deletePost(id)),
+        onSort: (posts,by,dir) => dispatch(sortPosts(posts,by, dir))
     }
 );
 

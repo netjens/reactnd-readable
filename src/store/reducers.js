@@ -1,5 +1,5 @@
 import C from '../constants'
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 
 export const categories = (state = [], action) => {
     switch (action.type) {
@@ -23,16 +23,14 @@ export const allPosts = (state = [], action) => {
                     return updatedPost;
                 }
                 return post;
-            }
-            )
+            })
         case C.DELETE_POST:
-            return state.filter( post => action.id !== post.id);
-
-
-
+            return state.filter(post => action.id !== post.id);
         default:
             return state;
     }
 }
 
-export default combineReducers({ categories, allPosts });
+
+
+export default combineReducers({categories, allPosts});

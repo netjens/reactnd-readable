@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import reducer from './store/reducers'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
+import C from './constants'
 
 const logger = store => next => action => {
   console.group(action.type)
@@ -18,6 +19,11 @@ const logger = store => next => action => {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const initialState ={ order: {
+  by: "timestamp",
+  dir: C.ORDER_UP
+}}
 
 const store = createStore(
   reducer,

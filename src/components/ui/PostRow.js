@@ -2,6 +2,7 @@ import React from 'react'
 import ThumbsUp from 'react-icons/lib/ti/thumbs-up'
 import ThumbsDown from 'react-icons/lib/ti/thumbs-down'
 import Delete from 'react-icons/lib/ti/times'
+
 import '../../stylesheets/PostList.css'
 import C from '../../constants'
 
