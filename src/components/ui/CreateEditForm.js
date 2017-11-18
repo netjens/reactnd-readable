@@ -3,16 +3,20 @@ import { withRouter } from 'react-router-dom'
 
 const CreateEditForm = (props) => {
 
-    const { onCreatePost } = props;
-
-    let _title, _body, _author;
+    const { onCreatePost, categories } = props;
+    console.log("props=" + JSON.stringify(props))
+    let _title, _body, _author,_category;
 
     const submitPost = e => {
+        console.log("in submit post");
         e.preventDefault();
         onCreatePost({
             title: _title.value,
-            body: _body.value
-        })
+            body: _body.value,
+            author: _author.value,
+            category: _category.value
+        });
+        props.history.push('/');
     }
 
 
@@ -21,22 +25,30 @@ const CreateEditForm = (props) => {
 
 
         <form onSubmit={submitPost}>
-            <label htmlFor="title">Title</label>
-            <input id="title" type="text" ref={input => _title = input} required />
-            <label htmlFor="body">Body</label>
-            <textarea rows="4" cols="50" id="body" ref={
-                input => _body = input} required>Enter your post here</textarea>
-            <label htmlFor="author">Author</label>
-            <input id="author" type="text" ref={input => _author = input} required />
+            <div>
+                <label htmlFor="title">Title</label>
+                <input id="title" type="text" ref={input => _title = input} required />
+            </div>
+            <div> <label htmlFor="body">Body</label>
+                <textarea rows="4" cols="50" id="body" ref={
+                    input => _body = input} required></textarea></div>
+            <div>
+                <label htmlFor="author">Author</label>
 
-            <button
-                type="button"
-                onClick={() => props.history.push('/')}
-            >
-                save
-  </button>
+                <input id="author" type="text" ref={input => _author = input} required />
+            </div>
+            <div>
+                <label htmlFor="category">Category</label>
+                <select id="category" ref={input=>_category = input}>
+                    {categories.map(category => (
+                        <option key={category.name} value={category.name}>{category.name}</option>
+                    ))
 
+                    }
+                </select>
 
+            </div>
+            <button>save</button>
         </form>
     )
 }

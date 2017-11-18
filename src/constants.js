@@ -4,6 +4,7 @@ const constants = {
     FETCH_POSTS: "FETCH_POSTS",
     DELETE_POST: "DELETE_POST",
     CHANGE_SCORE: "CHANGE_SCORE",
+    CREATE_POST: "CREATE_POST",
 
     //other constants
     VOTE_UP: "upVote",

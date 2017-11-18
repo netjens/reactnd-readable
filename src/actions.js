@@ -67,8 +67,25 @@ export function deletePost(id) {
 
 export function createPost(post){
     return function(dispatch){
+        post.timestamp=  Date.now();
+        post.id = guid();
+
+        readableAPI.createPost(post)
+        .then((createdPost)=>{
+            dispatch({type: C.CREATE_POST, payload: createdPost})
+        });
         
     }
+}
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
 }
 
 

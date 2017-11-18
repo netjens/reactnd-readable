@@ -24,6 +24,9 @@ export const allPosts = (state = [], action) => {
                 }
                 return post;
             })
+        case C.CREATE_POST:
+            return ([...state, action.payload]
+            )
         case C.DELETE_POST:
             return state.filter(post => action.id !== post.id);
         default:
