@@ -15,7 +15,7 @@ class PostList extends Component {
         this
             .props
             .onLoadPosts();
-        this.onOrderBy("timestamp");
+        this.onOrderBy("voteScore");
 
     }
 
