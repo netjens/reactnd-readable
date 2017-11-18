@@ -65,4 +65,10 @@ export function deletePost(id) {
     }
 }
 
+export function createPost(post){
+    return function(dispatch){
+        
+    }
+}
+
 
