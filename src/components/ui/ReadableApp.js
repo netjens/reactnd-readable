@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import PostList from '../containers/PostList'
-
+import CreateEditForm from '../containers/CreateEditForm'
+import { Route } from 'react-router-dom'
 
 class ReadableApp extends Component {
 
 
 
-  componentWillMount() {
-    this.props.onLoadCategories()
-  }
+
 
   render() {
     return (
@@ -16,18 +15,8 @@ class ReadableApp extends Component {
         <header className="App-header">
           <h1 className="App-title">Readable App</h1>
         </header>
-        <h2>Categories</h2>
-        <ul>
-          {this.props.categories &&
-            this.props
-              .categories
-              .map(category => (
-                <li key={category.name}>{category.name}
-                </li>
-              ))
-          }
-        </ul>
-        <PostList />
+        <Route exact path="/" render={ (props) =>(<PostList />)} />
+        <Route path="/create" render={(props) =>(<CreateEditForm />)} />
       </div>
     )
   }

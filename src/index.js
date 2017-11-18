@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import routes from './routes'
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'
 import reducer from './store/reducers'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import C from './constants'
+import {BrowserRouter} from 'react-router-dom'
+import ReadableApp from './components/ui/ReadableApp'
 
 const logger = store => next => action => {
   console.group(action.type)
@@ -20,22 +21,20 @@ const logger = store => next => action => {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const initialState ={ order: {
-  by: "timestamp",
-  dir: C.ORDER_UP
-}}
 
 const store = createStore(
   reducer,
   composeEnhancers(
-    applyMiddleware(thunk,logger)
+    applyMiddleware(thunk, logger)
   )
 )
 
 ReactDOM.render(
 
-<Provider store={store}>
-	   {routes}
-	</Provider>
-    , document.getElementById('root'));
+  <Provider store={store}>
+    <BrowserRouter>
+      <ReadableApp />
+    </BrowserRouter>
+  </Provider>
+  , document.getElementById('root'));
 registerServiceWorker();

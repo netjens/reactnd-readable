@@ -1,10 +1,11 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
-const CreateEditPost = (props) => {
+const CreateEditForm = (props) => {
 
-    const {onCreatePost} = props;
+    const { onCreatePost } = props;
 
-    let _title, _body;
+    let _title, _body, _author;
 
     const submitPost = e => {
         e.preventDefault();
@@ -15,17 +16,29 @@ const CreateEditPost = (props) => {
     }
 
 
+
     return (
+
+
         <form onSubmit={submitPost}>
             <label htmlFor="title">Title</label>
-            <input id="title" type="text" ref={input => _title = input} required/>
+            <input id="title" type="text" ref={input => _title = input} required />
             <label htmlFor="body">Body</label>
             <textarea rows="4" cols="50" id="body" ref={
-                input=>_body = input} required>Enter your post here</textarea>
-            <button>Save</button>
+                input => _body = input} required>Enter your post here</textarea>
+            <label htmlFor="author">Author</label>
+            <input id="author" type="text" ref={input => _author = input} required />
+
+            <button
+                type="button"
+                onClick={() => props.history.push('/')}
+            >
+                save
+  </button>
+
+
         </form>
     )
-
 }
 
-export default CreateEditPost;
+export default CreateEditForm;
