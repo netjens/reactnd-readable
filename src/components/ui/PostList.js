@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import PostRow from './PostRow'
 import Order from 'react-icons/lib/ti/arrow-unsorted'
 import C from '../../constants'
+import { Link } from 'react-router-dom'
+import '../../stylesheets/PostList.css';
 
 class PostList extends Component {
 
@@ -72,6 +74,10 @@ class PostList extends Component {
                             .map((post, rowIndex) => <PostRow key={rowIndex} {...post} {...this.props} />)}
                     </tbody>
                 </table>
+                <p>
+                <Link 
+                        to="/create"
+                       >Add Post</Link></p>
             </div>
         )
     }
