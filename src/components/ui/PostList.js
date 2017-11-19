@@ -14,14 +14,15 @@ class PostList extends Component {
     }
 
     componentWillMount() {
-
+    console.log("filter=" + this.state.filter)
     this.props.onLoadCategories();
         this
             .props
-            .onLoadPosts();
+            .onLoadPosts(this.props.selectedCategory);
         this.onOrderBy("voteScore");
 
     }
+
 
     onOrderBy(by) {
         const { orderBy, orderDir } = this.state;
@@ -52,7 +53,7 @@ class PostList extends Component {
                         this.props
                             .categories
                             .map(category => (
-                                <li key={category.name}>{category.name}
+                                <li key={category.name}><Link to="/{category.path}">{category.name}</Link>
                                 </li>
                             ))
                     }

@@ -16,7 +16,7 @@ class ReadableApp extends Component {
         <header className="App-header">
           <h1 className="App-title">Readable App</h1>
         </header>
-        <Route exact path="/" render={ (props) =>(<PostList />)} />
+        <Route exact path="/" compontent={PostList} />
         <Route path="/create" render={(props) =>(<CreateEditForm />)} />
         <Route path="/edit" render={(props)=>(<EditForm />)} />
       </div>

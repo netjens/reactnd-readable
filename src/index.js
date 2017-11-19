@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 import C from './constants'
 import {BrowserRouter} from 'react-router-dom'
 import ReadableApp from './components/ui/ReadableApp'
+import routes from './routes'
 
 const logger = store => next => action => {
   console.group(action.type)
@@ -32,9 +33,7 @@ const store = createStore(
 ReactDOM.render(
 
   <Provider store={store}>
-    <BrowserRouter>
-      <ReadableApp />
-    </BrowserRouter>
+      {routes}
   </Provider>
   , document.getElementById('root'));
 registerServiceWorker();

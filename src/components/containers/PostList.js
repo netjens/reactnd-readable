@@ -5,16 +5,20 @@ import PostList from '../ui/PostList'
 import { withRouter } from 'react-router'
 
 const mapStateToProps = (state, props) =>
-({
+{
+    console.log("in mapstatetoprops" + JSON.stringify(props.match.params));
+return ({
     posts: state.allPosts,
     order: state.order,
-    categories: state.categories
+    categories: state.categories,
+    selectedCategory: props.match.params.category
 });
+}
 
 const mapDispatchToProps = (dispatch) =>
      (//wenn klammer fehlt, interpretiert er rückgabe nicht als objekt, es sei denn geschweifte klammer ist auf selber ebene wie return anweisung
         {
-        onLoadPosts: () => dispatch( loadPosts()),
+        onLoadPosts: (selectedCategory) => dispatch( loadPosts(selectedCategory)),
         onChangeScore: (id,value) => dispatch(changeScore(id,value)),
         onDeletePost: (id) => dispatch(deletePost(id)),
         onSort: (posts,by,dir) => dispatch(sortPosts(posts,by, dir)),

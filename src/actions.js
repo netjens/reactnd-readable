@@ -14,9 +14,16 @@ export function loadCategories() {
 
 }
 
-export function loadPosts() {
+export function loadPosts(selectedCategory) {
 
     return function (dispatch) {
+        console.log("inloadposts mit category:" + selectedCategory)
+        if(selectedCategory){
+            readableAPI.getAllPostsForCategory(selectedCategory)
+            .then(posts => {
+                dispatch({type: C.FETCH_POSTS, payload: posts})
+            })
+        }
         readableAPI
             .getAllPosts()
             .then(posts => {
