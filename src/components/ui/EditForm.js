@@ -15,6 +15,7 @@ class EditForm extends React.Component {
         };
 
         this.state = {
+            id: post.id,
             title: post.title,
             body: post.body,
             author: post.author,
