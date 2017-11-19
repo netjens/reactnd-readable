@@ -43,8 +43,6 @@ class PostList extends Component {
     }
 
     render() {
-        console.log("render aufgerufen von derliste");
-        console.log("allPosts = " + JSON.stringify(this.props.posts));
         return (
             <div>
                 <h2>Categories</h2>

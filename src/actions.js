@@ -17,18 +17,19 @@ export function loadCategories() {
 export function loadPosts(selectedCategory) {
 
     return function (dispatch) {
-        console.log("inloadposts mit category:" + selectedCategory)
-        if(selectedCategory){
-            readableAPI.getAllPostsForCategory(selectedCategory)
-            .then(posts => {
-                dispatch({type: C.FETCH_POSTS, payload: posts})
-            })
+        if (selectedCategory) {
+            return readableAPI
+                .getAllPostsForCategory(selectedCategory)
+                .then(posts => {
+                    dispatch({type: C.FETCH_POSTS, payload: posts})
+                })
+        } else {
+            return readableAPI
+                .getAllPosts()
+                .then(posts => {
+                    dispatch({type: C.FETCH_POSTS, payload: posts})
+                })
         }
-        readableAPI
-            .getAllPosts()
-            .then(posts => {
-                dispatch({type: C.FETCH_POSTS, payload: posts})
-            })
     }
 }
 
@@ -37,7 +38,7 @@ export function sortPosts(posts, by, dir) {
         ? 1
         : -1;
 
-    function compare  (a, b)  {
+    function compare(a, b) {
         if (a[by] > b[by]) {
             return compResult;
         }
@@ -48,7 +49,10 @@ export function sortPosts(posts, by, dir) {
 
     }
 
-    return ({type: C.FETCH_POSTS, payload: posts.sort(compare)});
+    return ({
+        type: C.FETCH_POSTS,
+        payload: posts.sort(compare)
+    });
 
 }
 
@@ -72,36 +76,35 @@ export function deletePost(id) {
     }
 }
 
-export function createPost(post){
-    return function(dispatch){
-        post.timestamp=  Date.now();
+export function createPost(post) {
+    return function (dispatch) {
+        post.timestamp = Date.now();
         post.id = guid();
 
-        readableAPI.createPost(post)
-        .then((createdPost)=>{
-            dispatch({type: C.CREATE_POST, payload: createdPost})
-        });
-        
+        readableAPI
+            .createPost(post)
+            .then((createdPost) => {
+                dispatch({type: C.CREATE_POST, payload: createdPost})
+            });
+
     }
 }
 
-export function updatePost(post){
-    return function(dispatch){
-        readableAPI.updatePost(post)
-        .then((updatedPost)=>{
-            dispatch({type: C.UPDATE_POST, payload: updatedPost })
-        });
+export function updatePost(post) {
+    return function (dispatch) {
+        readableAPI
+            .updatePost(post)
+            .then((updatedPost) => {
+                dispatch({type: C.UPDATE_POST, payload: updatedPost})
+            });
     }
 }
 
 function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
-
-

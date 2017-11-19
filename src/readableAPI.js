@@ -22,10 +22,11 @@ export const getAllPosts = () =>
  fetch(`${api}/posts`,{headers})
 .then(res=>res.json())
 
-export const getAllPostsForCategory = (category) =>
+export const getAllPostsForCategory = (category) =>{
+  return (
   fetch(`${api}/${category}/posts`,{headers})
-  .then(res=>res.json())
-
+  .then(res=>res.json()))
+}
 
 
 export const vote = (id,vote) => 
