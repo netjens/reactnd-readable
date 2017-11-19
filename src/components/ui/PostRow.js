@@ -9,7 +9,7 @@ import '../../stylesheets/PostList.css'
 import C from '../../constants'
 
 const PostRow = (props) => {
-    const { post, onChangeScore, onDeletePost, onEditPost } = props;
+    const { post, onChangeScore, onDeletePost } = props;
     const date = new Date(post.timestamp);
     const formattedDate = date.toLocaleDateString() + " " + date.toLocaleTimeString();
     return (

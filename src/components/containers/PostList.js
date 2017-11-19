@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { loadPosts,changeScore,deletePost,order,sortPosts,updatePost} from '../../actions'
+import { loadPosts,changeScore,deletePost,sortPosts,updatePost} from '../../actions'
 import { loadCategories } from '../../actions'
 import PostList from '../ui/PostList'
 import { withRouter } from 'react-router'

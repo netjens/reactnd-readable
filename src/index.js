@@ -6,9 +6,6 @@ import { Provider } from 'react-redux'
 import reducer from './store/reducers'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import C from './constants'
-import {BrowserRouter} from 'react-router-dom'
-import ReadableApp from './components/ui/ReadableApp'
 import routes from './routes'
 
 const logger = store => next => action => {

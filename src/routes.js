@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PostList from './components/containers/PostList'
 import CreateEditForm from './components/containers/CreateEditForm'
 import EditForm from './components/containers/EditForm'

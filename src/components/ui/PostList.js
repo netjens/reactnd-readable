@@ -1,9 +1,8 @@
-import { PropTypes } from 'react'
 import React, { Component } from 'react'
 import PostRow from './PostRow'
 import Order from 'react-icons/lib/ti/arrow-unsorted'
 import C from '../../constants'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import '../../stylesheets/PostList.css';
 
 class PostList extends Component {
@@ -13,7 +12,7 @@ class PostList extends Component {
         orderBy: null
     }
 
-    componentWillMount() {
+    componentDidMount() {
     console.log("filter=" + this.state.filter)
     this.props.onLoadCategories();
         this
@@ -42,6 +41,11 @@ class PostList extends Component {
 
     }
 
+    shouldComponentUpdate(){
+        console.log("in should update" + JSON.stringify(this.props.match));
+        return true;
+    }
+
     render() {
         return (
             <div>
@@ -51,7 +55,7 @@ class PostList extends Component {
                         this.props
                             .categories
                             .map(category => (
-                                <li key={category.name}><Link to="/{category.path}">{category.name}</Link>
+                                <li key={category.name}><NavLink to="/react">{category.name}</NavLink>
                                 </li>
                             ))
                     }
