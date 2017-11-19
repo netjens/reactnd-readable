@@ -2,25 +2,31 @@ import React from 'react'
 import ThumbsUp from 'react-icons/lib/ti/thumbs-up'
 import ThumbsDown from 'react-icons/lib/ti/thumbs-down'
 import Delete from 'react-icons/lib/ti/times'
+import Edit from 'react-icons/lib/ti/edit'
+import { Link } from 'react-router-dom'
 
 import '../../stylesheets/PostList.css'
 import C from '../../constants'
 
 const PostRow = (props) => {
-    const {id, title, author, commentCount, voteScore,category,timestamp,onChangeScore,rowIndex,onDeletePost } = props;
-    const date = new Date(timestamp);
+    const { post, onChangeScore, onDeletePost, onEditPost } = props;
+    const date = new Date(post.timestamp);
     const formattedDate = date.toLocaleDateString() + " " + date.toLocaleTimeString();
     return (
         <tr>
-            <td>{title}</td>
-            <td>{author}</td>
-            <td>{commentCount}</td>
-            <td>{voteScore}</td>
+            <td>{post.title}</td>
+            <td>{post.author}</td>
+            <td>{post.commentCount}</td>
+            <td>{post.voteScore}</td>
+            <td><ThumbsUp onClick={() => onChangeScore(post.id, C.VOTE_UP)} className="thumbsUp" />
+                <ThumbsDown onClick={() => onChangeScore(post.id, C.VOTE_DOWN)} className="thumbsDown" /></td>
             <td>{formattedDate}</td>
-            <td>{category}</td>
-            <td><ThumbsUp onClick={() => onChangeScore(id,C.VOTE_UP)} className="thumbsUp"/></td>
-            <td><ThumbsDown onClick={() => onChangeScore(id,C.VOTE_DOWN)} className="thumbsDown"/></td>
-            <td><Delete onClick={() => onDeletePost(id)} className="delete"/></td>
+            <td>{post.category}</td>
+            <td>  <Link to={{
+  pathname: '/edit',
+  post:post
+}}><Edit /></Link></td>
+            <td><Delete onClick={() => onDeletePost(post.id)} className="delete" /></td>
 
         </tr>
     );

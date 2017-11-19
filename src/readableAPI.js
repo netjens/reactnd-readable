@@ -3,9 +3,10 @@ const api = "http://localhost:3001"
 
 
 // Generate a unique token 
-let token = localStorage.token
+/*let token = localStorage.token
 if (!token)
-  token = localStorage.token = Math.random().toString(36).substr(-8)
+  token = localStorage.token = Math.random().toString(36).substr(-8)*/
+const token = "abc";
 
 const headers = {
   'Accept': 'application/json',
@@ -52,6 +53,18 @@ export const createPost = (post) =>
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(post)
+   })
+  .then(
+    res=>res.json())
+
+export const updatePost = (post) =>
+   fetch(`${api}/posts/${post.id}`,{
+     method: 'PUT',
+      headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({title: post.title, body: post.body})
    })
   .then(
     res=>res.json())

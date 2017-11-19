@@ -5,6 +5,7 @@ const constants = {
     DELETE_POST: "DELETE_POST",
     CHANGE_SCORE: "CHANGE_SCORE",
     CREATE_POST: "CREATE_POST",
+    UPDATE_POST: "UPDATE_POST",
 
     //other constants
     VOTE_UP: "upVote",

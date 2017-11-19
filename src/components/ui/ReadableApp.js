@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PostList from '../containers/PostList'
 import CreateEditForm from '../containers/CreateEditForm'
+import EditForm from '../containers/EditForm'
 import { Route } from 'react-router-dom'
 
 class ReadableApp extends Component {
@@ -17,6 +18,7 @@ class ReadableApp extends Component {
         </header>
         <Route exact path="/" render={ (props) =>(<PostList />)} />
         <Route path="/create" render={(props) =>(<CreateEditForm />)} />
+        <Route path="/edit" render={(props)=>(<EditForm />)} />
       </div>
     )
   }

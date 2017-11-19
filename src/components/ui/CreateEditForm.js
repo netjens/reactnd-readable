@@ -35,7 +35,9 @@ const CreateEditForm = (props) => {
             <div>
                 <label htmlFor="author">Author</label>
 
-                <input id="author" type="text" ref={input => _author = input} required />
+                <input id="author" type="text" ref={input => _author = input} required >
+                    
+                </input>
             </div>
             <div>
                 <label htmlFor="category">Category</label>

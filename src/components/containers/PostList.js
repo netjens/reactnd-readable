@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { loadPosts,changeScore,deletePost,order,sortPosts} from '../../actions'
+import { loadPosts,changeScore,deletePost,order,sortPosts,updatePost} from '../../actions'
 import { loadCategories } from '../../actions'
 import PostList from '../ui/PostList'
 import { withRouter } from 'react-router'
@@ -18,7 +18,8 @@ const mapDispatchToProps = (dispatch) =>
         onChangeScore: (id,value) => dispatch(changeScore(id,value)),
         onDeletePost: (id) => dispatch(deletePost(id)),
         onSort: (posts,by,dir) => dispatch(sortPosts(posts,by, dir)),
-         onLoadCategories: () => dispatch( loadCategories())
+         onLoadCategories: () => dispatch( loadCategories()),
+         onEditPost: (post) => dispatch(updatePost(post))
     }
 );
 

@@ -50,7 +50,7 @@ export function changeScore(id, vote) {
         readableAPI
             .vote(id, vote)
             .then(post => {
-                dispatch({type: C.CHANGE_SCORE, payload: post})
+                dispatch({type: C.UPDATE_POST, payload: post})
             });
     }
 }
@@ -75,6 +75,15 @@ export function createPost(post){
             dispatch({type: C.CREATE_POST, payload: createdPost})
         });
         
+    }
+}
+
+export function updatePost(post){
+    return function(dispatch){
+        readableAPI.updatePost(post)
+        .then((updatedPost)=>{
+            dispatch({type: C.UPDATE_POST, payload: updatedPost })
+        });
     }
 }
 

@@ -64,15 +64,16 @@ class PostList extends Component {
                             <th>Author</th>
                             <th>Number of commments</th>
                             <th>Current score<Order className="order" onClick={() => this.onOrderBy("voteScore")} /></th>
-
+                            <th>vote</th>
                             <th>Date<Order className="order" onClick={() => this.onOrderBy("timestamp")} /></th>
+                            <th>Category</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this
                             .props
                             .posts
-                            .map((post, rowIndex) => <PostRow key={rowIndex} {...post} {...this.props} />)}
+                            .map((post, rowIndex) => <PostRow key={rowIndex} post={post} {...this.props} />)}
                     </tbody>
                 </table>
                 <p>

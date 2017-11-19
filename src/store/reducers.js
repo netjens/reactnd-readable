@@ -15,20 +15,20 @@ export const allPosts = (state = [], action) => {
     switch (action.type) {
         case C.FETCH_POSTS:
             return action.payload;
-        case C.CHANGE_SCORE:
-
+        case C.CREATE_POST:
+            return ([...state, action.payload]
+            )
+        case C.DELETE_POST:
+            return state.filter(post => action.id !== post.id);
+        case C.UPDATE_POST:
             const updatedPost = action.payload;
+            console.log("entered update post new title" + updatedPost.title);
             return state.map(function (post) {
                 if (post.id === updatedPost.id) {
                     return updatedPost;
                 }
                 return post;
             })
-        case C.CREATE_POST:
-            return ([...state, action.payload]
-            )
-        case C.DELETE_POST:
-            return state.filter(post => action.id !== post.id);
         default:
             return state;
     }
