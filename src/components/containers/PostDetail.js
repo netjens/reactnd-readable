@@ -1,9 +1,11 @@
 import {connect} from 'react-redux'
-//import {updatePost} from '../../actions'
+import {changeScore, deletePost} from '../../actions'
 import PostDetail from '../ui/PostDetail'
 import {withRouter} from 'react-router'
 
 const mapStateToProps = (state, props) => {
+    console.log("in mapStateToProps");
+
     const selectedPost = state
         .allPosts
         .filter((post) => post.id === props.match.params.post_id)
@@ -11,5 +13,12 @@ const mapStateToProps = (state, props) => {
     return ({post: selectedPost});
 }
 
-const Container = connect(mapStateToProps)(PostDetail);
-export default withRouter(Container)
+const mapDispatchToProps = (dispatch) => 
+     ({ 
+        onChangeScore: (id, value) =>dispatch(changeScore(id, value)),
+        onDeletePost: (id) =>dispatch(deletePost(id))
+    });
+
+const Container = connect(mapStateToProps, mapDispatchToProps)(PostDetail);
+
+export default withRouter(Container);
