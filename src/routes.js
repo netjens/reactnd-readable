@@ -14,7 +14,7 @@ const routes = (
         <Route path="/create" component={CreateEditForm} />
         <Route path="/edit" component={EditForm} />
 
-           <Route  path="/:category" component={PostList} />
+           <Route  path="/:category" component={PostList} onChange={PostList} />
                  
         </Switch>
 

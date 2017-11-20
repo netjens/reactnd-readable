@@ -13,8 +13,8 @@ class PostList extends Component {
     }
 
     componentDidMount() {
-    console.log("filter=" + this.state.filter)
-    this.props.onLoadCategories();
+        console.log("filter=" + this.state.filter)
+        this.props.onLoadCategories();
         this
             .props
             .onLoadPosts(this.props.selectedCategory);
@@ -41,21 +41,32 @@ class PostList extends Component {
 
     }
 
-    shouldComponentUpdate(){
-        console.log("in should update" + JSON.stringify(this.props.match));
-        return true;
+
+    componentWillReceiveProps(nextProps) {
+        let nextCategory = nextProps.match.params.category;
+
+        if (this.props.selectedCategory !== nextCategory) {
+            //required because otherwise no render occurs after url change by link-component
+            this.props.onLoadPosts(nextCategory);
+        }
+
+
+
     }
 
+
     render() {
+        console.log("rerender");
         return (
             <div>
                 <h2>Categories</h2>
                 <ul>
+                     <li key="all"><NavLink to={"/"}>All</NavLink></li>
                     {this.props.categories &&
                         this.props
                             .categories
                             .map(category => (
-                                <li key={category.name}><NavLink to="/react">{category.name}</NavLink>
+                                <li key={category.name}><NavLink to={category.name}>{category.name}</NavLink>
                                 </li>
                             ))
                     }
@@ -80,9 +91,9 @@ class PostList extends Component {
                     </tbody>
                 </table>
                 <p>
-                <Link 
+                    <Link
                         to="/create"
-                       >Add Post</Link></p>
+                    >Add Post</Link></p>
             </div>
         )
     }

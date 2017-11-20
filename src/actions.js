@@ -18,6 +18,7 @@ export function loadPosts(selectedCategory) {
 
     return function (dispatch) {
         if (selectedCategory) {
+            console.log("in load posts for " + selectedCategory);
             return readableAPI
                 .getAllPostsForCategory(selectedCategory)
                 .then(posts => {
