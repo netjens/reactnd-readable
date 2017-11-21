@@ -18,7 +18,6 @@ export function loadPosts(selectedCategory) {
 
     return function (dispatch) {
         if (selectedCategory) {
-            console.log("in load posts for " + selectedCategory);
             return readableAPI
                 .getAllPostsForCategory(selectedCategory)
                 .then(posts => {
@@ -31,6 +30,15 @@ export function loadPosts(selectedCategory) {
                     dispatch({type: C.FETCH_POSTS, payload: posts})
                 })
         }
+    }
+}
+
+export function loadComments(parentId){
+    return function(dispatch){
+        return readableAPI.getComments(parentId)
+        .then(comments =>{
+            dispatch({type: C.FETCH_COMMENTS, parentId: parentId, payload:comments});
+        })
     }
 }
 

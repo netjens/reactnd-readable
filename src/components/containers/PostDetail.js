@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {changeScore, deletePost} from '../../actions'
+import {changeScore, deletePost,loadComments} from '../../actions'
 import PostDetail from '../ui/PostDetail'
 import {withRouter} from 'react-router'
 
@@ -10,13 +10,17 @@ const mapStateToProps = (state, props) => {
         .allPosts
         .filter((post) => post.id === props.match.params.post_id)
         .pop();
-    return ({post: selectedPost});
+    return ({
+        post: selectedPost,
+        comments: state.comments ? state.comments[selectedPost.id] : state.comments
+    });
 }
 
 const mapDispatchToProps = (dispatch) => 
      ({ 
         onChangeScore: (id, value) =>dispatch(changeScore(id, value)),
-        onDeletePost: (id) =>dispatch(deletePost(id))
+        onDeletePost: (id) =>dispatch(deletePost(id)),
+        onLoadComments: (parentId) => dispatch( loadComments(parentId))
     });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(PostDetail);

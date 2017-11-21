@@ -28,6 +28,12 @@ export const getAllPostsForCategory = (category) =>{
   .then(res=>res.json()))
 }
 
+export const getComments = (parentId) =>{
+  return (
+  fetch(`${api}/posts/${parentId}/comments`,{headers})
+  .then(res=>res.json()))
+}
+
 
 export const vote = (id,vote) => 
    fetch(`${api}/posts/${id}`,{

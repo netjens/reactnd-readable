@@ -13,7 +13,6 @@ class PostList extends Component {
     }
 
     componentDidMount() {
-        console.log("filter=" + this.state.filter)
         this.props.onLoadCategories();
         this
             .props

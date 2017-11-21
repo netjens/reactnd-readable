@@ -34,6 +34,20 @@ export const allPosts = (state = [], action) => {
     }
 }
 
+export const comments = (state={}, action) =>{
+
+    switch(action.type) {
+        case C.FETCH_COMMENTS:
+            return {
+                ...state,
+                [action.parentId]:action.payload
+            }
+        default:
+            return state;
+    }
+
+}
 
 
-export default combineReducers({categories, allPosts});
+
+export default combineReducers({categories, allPosts,comments});
