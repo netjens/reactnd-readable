@@ -38,15 +38,14 @@ export const comments = (state={}, action) =>{
     switch(action.type) {
         case C.FETCH_COMMENTS:
             return {
-                ...state,
                 [action.parentId]:action.payload
             }
         case C.UPDATE_COMMENT:
-            return {
-                ...state,
-                [action.payload.parentId]:
-                [action.payload
-            }
+
+            return ({
+                ...state, [action.payload.parentId]:[...state[action.payload.parentId].filter(comment=>
+                comment.id !== action.payload.id),action.payload]}
+            );
         default:
             return state;
     }
