@@ -46,6 +46,8 @@ export const comments = (state={}, action) =>{
                 ...state, [action.payload.parentId]:[...state[action.payload.parentId].filter(comment=>
                 comment.id !== action.payload.id),action.payload]}
             );
+        case C.CREATE_COMMENT:
+            return ({...state, [action.payload.parentId]:[...state[action.payload.parentId],action.payload]})
         default:
             return state;
     }

@@ -15,7 +15,12 @@ const constants = {
     VOTE_DOWN: "downVote",
 
     ORDER_UP: "up",
-    ORDER_DOWN: "down"
+    ORDER_DOWN: "down",
+
+    EDIT: "edit",
+    CREATE: "create"
+
+
 }
 
 

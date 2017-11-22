@@ -8,6 +8,7 @@ import Delete from 'react-icons/lib/ti/times'
 import Edit from 'react-icons/lib/ti/edit'
 import '../../stylesheets/PostDetail.css'
 import Modal from 'react-modal'
+import Create from 'react-icons/lib/ti/document-add'
 
 class PostDetail extends Component {
 
@@ -21,7 +22,8 @@ class PostDetail extends Component {
         modalOpen: false,
         comment: {
             body: null,
-            author: null
+            author: null,
+            editMode: null
         }
     }
 
@@ -29,7 +31,8 @@ class PostDetail extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+
 
     }
 
@@ -37,6 +40,7 @@ class PostDetail extends Component {
         const post = this.props.post;
         const {title, author, voteScore, timestamp, body} = this.props.post;
         const {onDeletePost, onChangeScore} = this.props;
+        const disabled = this.state.comment.editMode == C.CREATE ? false : true;
         return (
             <div>
                 <div>
@@ -61,6 +65,7 @@ class PostDetail extends Component {
                             pathname: '/edit',
                             post: post
                         }}><Edit/></Link>
+                        <Create onClick={() => this.openModal(C.CREATE)} className='edit' />
                         <Delete onClick={() => this.onClickDelete(post.id)} className="delete"/>
                     </p>
                 </div>
@@ -70,22 +75,27 @@ class PostDetail extends Component {
                         .comments
                         .map((comment, rowIndex) => <Comment key={rowIndex} comment={comment} openModal={this.openModal}/>)}
                 </div>
+
+                    
                 <Modal
                     className='modal'
                     overlayClassName='overlay'
                     isOpen={this.state.modalOpen}
                     contentLabel='Modal'>
-
+             
                     <form onSubmit={this.handleSubmit}>
                         <div>
                             <label htmlFor="author">Author</label>
                             <input
                                 name="author"
                                 type="text"
+                                name="author"
                                 value={this.state.comment.author}
-                                disabled
+                                onChange={this.handleChange}
+                                disabled={disabled}
                                 required></input>
                         </div>
+            
                         <div>
 
                             <label htmlFor="body">Body</label>
@@ -100,6 +110,7 @@ class PostDetail extends Component {
                         </div>
                         <div>
                             <button>save</button>
+                            <button onClick={this.closeModal}>cancel</button>
                         </div>
                     </form>
                 </Modal>
@@ -116,25 +127,24 @@ class PostDetail extends Component {
             .history
             .push('/');
     }
+
     handleChange(event) {
-        console.log("in handleChange");
         const target = event.target;
         const value = target.value;
         const name = target.name;
 
         this.setState({...this.state,comment:{...this.state.comment,[name]:value}});
-        console.log("state after setstate:" + JSON.stringify(this.state));
     }
 
     handleSubmit(e) {
         e.preventDefault();
         const comment = this.state.comment;
-        console.log("coment:" + JSON.stringify(comment));
-        if (comment.id) {
+        comment.parentId = this.props.post.parentId;
+        console.log("inSubmit:" + JSON.stringify(comment));
             this
                 .props
-                .onUpdateComment({id: comment.id, title: comment.author, body: comment.body});
-        }
+                .onSaveComment(comment);
+
         this.closeModal();
     }
 
@@ -142,10 +152,13 @@ class PostDetail extends Component {
         this.setState(() => ({modalOpen: false, id: null, body: null, author: null}))
     }
 
-    openModal = (comment) => {
+    openModal = (editMode,comment) => {
+        console.log("editMode in openModal" + editMode);
         if (comment == undefined) {
             comment = {};
-        }
+        } 
+        comment.editMode = editMode;
+        
         this.setState(() => ({modalOpen: true, comment}))
     }
 

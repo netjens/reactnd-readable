@@ -4,6 +4,8 @@ import ThumbsDown from 'react-icons/lib/ti/thumbs-down'
 import Delete from 'react-icons/lib/ti/times'
 import Edit from 'react-icons/lib/ti/edit'
 import {Link} from 'react-router-dom'
+import '../../stylesheets/PostDetail.css'
+
 
 import C from '../../constants'
 
@@ -21,7 +23,7 @@ const Comment = (props) => {
             </p>
             <p>{body}</p>
             <p>
-            <button onClick={() => props.openModal(props.comment)} className='icon-btn'>
+            <button onClick={() => props.openModal(C.EDIT,props.comment)} className='icon-btn edit'>
                           <Edit />
                         </button>
             </p>

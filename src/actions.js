@@ -109,13 +109,24 @@ export function updatePost(post) {
     }
 }
 
-export function updateComment(comment) {
+export function updateOrCreateComment(comment) {
+    console.log("in UpdateOrCreateComment:" + JSON.stringify(comment));
     return function (dispatch) {
-        readableAPI
-            .updateComment(comment)
-            .then((updatedComment) => {
-                dispatch({type: C.UPDATE_COMMENT, payload: updatedComment})
-            });
+        if(comment.id){
+            readableAPI
+                .updateComment(comment)
+                .then((updatedComment) => {
+                    dispatch({type: C.UPDATE_COMMENT, payload: updatedComment})
+                });
+        }else{
+            comment.timestamp = Date.now();
+            comment.id = guid();
+            readableAPI.createComment(comment)
+            .then((createdComment) => {
+      
+                dispatch({type: C.CREATE_COMMENT, payload: createdComment})
+            })
+        }
     }
 }
 

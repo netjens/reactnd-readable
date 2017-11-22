@@ -27,3 +27,7 @@
     background: none;
     border: none;
   }
+
+  .edit:hover {
+  cursor: pointer;
+}
