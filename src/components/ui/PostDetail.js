@@ -16,6 +16,7 @@ class PostDetail extends Component {
         this
             .props
             .onLoadComments(this.props.post.id);
+
     }
 
     state = {
@@ -32,13 +33,14 @@ class PostDetail extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.closeModal = this.closeModal.bind(this);
+     
 
 
     }
 
     render() {
         const post = this.props.post;
-        const {title, author, voteScore, timestamp, body} = this.props.post;
+        const {title, author, voteScore, timestamp, body,commentCount} = this.props.post;
         const {onDeletePost, onChangeScore} = this.props;
         const disabled = this.state.comment.editMode == C.CREATE ? false : true;
         return (
@@ -50,6 +52,7 @@ class PostDetail extends Component {
                         on {getFormattedDate(timestamp)}</p>
                     <p>Vote: {voteScore}
                     </p>
+                    <p>Number of Comments: {commentCount} </p>
                     <p>{body}</p>
                 </div>
                 <div>
@@ -75,7 +78,7 @@ class PostDetail extends Component {
                         .comments
                         .map((comment, rowIndex) =>
                          <Comment key={rowIndex} comment={comment} openModal={this.openModal}
-                          onDeleteComment={this.props.onDeleteComment}
+                          onDeleteComment={this.onClickDeleteComment(comment.id)}
                           onChangeCommentScore={this.props.onChangeCommentScore}/>)}
                 </div>
 
@@ -130,6 +133,10 @@ class PostDetail extends Component {
             .push('/');
     }
 
+    onClickDeleteComment = (id)=>{
+        this.props.onLoadPost(this.props.post.id);//to update the vote score from post
+    }
+
     handleChange(event) {
         const target = event.target;
         const value = target.value;
@@ -147,6 +154,7 @@ class PostDetail extends Component {
                 .onSaveComment(comment);
 
         this.closeModal();
+        this.props.onLoadPost(this.props.post.id);//to update the vote score from post
     }
 
     closeModal() {

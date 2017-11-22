@@ -33,6 +33,17 @@ export function loadPosts(selectedCategory) {
     }
 }
 
+export function loadPost(id) {
+    return function (dispatch) {
+
+        return readableAPI
+            .getPost(id)
+            .then(post => {
+                dispatch({ type: C.UPDATE_POST, payload: post })
+            })
+    }
+}
+
 export function loadComments(parentId) {
     return function (dispatch) {
         return readableAPI.getComments(parentId)
@@ -80,7 +91,7 @@ export function changeCommentScore(id, vote) {
         readableAPI
             .voteComment(id, vote)
             .then(post => {
-                console.log("in changeCommentScore:" + JSON.stringify(post) + " mit vote=" +  vote);
+                console.log("in changeCommentScore:" + JSON.stringify(post) + " mit vote=" + vote);
                 dispatch({ type: C.UPDATE_COMMENT, payload: post })
             });
     }
