@@ -3,14 +3,13 @@ import ThumbsUp from 'react-icons/lib/ti/thumbs-up'
 import ThumbsDown from 'react-icons/lib/ti/thumbs-down'
 import Delete from 'react-icons/lib/ti/times'
 import Edit from 'react-icons/lib/ti/edit'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import '../../stylesheets/PostDetail.css'
-
-
 import C from '../../constants'
 
+
 const Comment = (props) => {
-    const {author, timestamp, voteScore, body} = props.comment;
+    const { author, timestamp, voteScore, body,id } = props.comment;
     const date = new Date(timestamp);
     const formattedDate = date.toLocaleDateString() + " " + date.toLocaleTimeString();
 
@@ -22,10 +21,14 @@ const Comment = (props) => {
             </p>
             <p>{body}</p>
             <p>
-            <button onClick={() => props.openModal(C.EDIT,props.comment)} className='icon-btn edit'>
-                          <Edit />
-                        </button>
-            <Delete onClick={() => props.onDeleteComment(props.comment.id)} className="delete"/>
+                <ThumbsUp
+                    onClick={() => props.onChangeCommentScore(id, C.COMMENT_VOTE_UP)}
+                    className="thumbsUp" />
+                <ThumbsDown
+                    onClick={() => props.onChangeCommentScore(id, C.COMMENT_VOTE_DOWN)}
+                    className="thumbsDown" />
+                <Edit onClick={() => props.openModal(C.EDIT, props.comment)} className='edit' />
+                <Delete onClick={() => props.onDeleteComment(props.comment.id)} className="delete" />
             </p>
         </div>
     );

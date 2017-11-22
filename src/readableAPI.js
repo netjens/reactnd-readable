@@ -48,6 +48,19 @@ export const vote = (id,vote) =>
     res=>res.json())
 
 
+export const voteComment = (id,vote) => 
+   fetch(`${api}/comments/${id}`,{
+     method: 'POST',
+      headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({"option" : vote})
+   })
+  .then(
+    res=>res.json())
+
+
 export const deletePost = (id) =>
    fetch(`${api}/posts/${id}`,
    { method: 'DELETE',

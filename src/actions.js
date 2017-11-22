@@ -75,6 +75,19 @@ export function changeScore(id, vote) {
     }
 }
 
+export function changeCommentScore(id, vote) {
+    return function (dispatch) {
+        readableAPI
+            .voteComment(id, vote)
+            .then(post => {
+                console.log("in changeCommentScore:" + JSON.stringify(post) + " mit vote=" +  vote);
+                dispatch({ type: C.UPDATE_COMMENT, payload: post })
+            });
+    }
+}
+
+
+
 export function deletePost(id) {
     return function (dispatch) {
         readableAPI

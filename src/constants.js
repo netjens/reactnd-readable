@@ -15,6 +15,9 @@ const constants = {
     VOTE_UP: "upVote",
     VOTE_DOWN: "downVote",
 
+    COMMENT_VOTE_UP: "upVote",
+    COMMENT_VOTE_DOWN: "downVote",
+
     ORDER_UP: "up",
     ORDER_DOWN: "down",
 

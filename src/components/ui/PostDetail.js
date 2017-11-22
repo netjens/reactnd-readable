@@ -74,7 +74,9 @@ class PostDetail extends Component {
                         .props
                         .comments
                         .map((comment, rowIndex) =>
-                         <Comment key={rowIndex} comment={comment} openModal={this.openModal} onDeleteComment={this.props.onDeleteComment}/>)}
+                         <Comment key={rowIndex} comment={comment} openModal={this.openModal}
+                          onDeleteComment={this.props.onDeleteComment}
+                          onChangeCommentScore={this.props.onChangeCommentScore}/>)}
                 </div>
 
                     
