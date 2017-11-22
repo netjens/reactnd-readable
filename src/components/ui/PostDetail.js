@@ -89,7 +89,6 @@ class PostDetail extends Component {
                             <input
                                 name="author"
                                 type="text"
-                                name="author"
                                 value={this.state.comment.author}
                                 onChange={this.handleChange}
                                 disabled={disabled}
@@ -138,9 +137,8 @@ class PostDetail extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const comment = this.state.comment;
-        comment.parentId = this.props.post.parentId;
-        console.log("inSubmit:" + JSON.stringify(comment));
+        let comment = this.state.comment;
+        comment.parentId = this.props.post.id;
             this
                 .props
                 .onSaveComment(comment);
@@ -153,7 +151,6 @@ class PostDetail extends Component {
     }
 
     openModal = (editMode,comment) => {
-        console.log("editMode in openModal" + editMode);
         if (comment == undefined) {
             comment = {};
         } 

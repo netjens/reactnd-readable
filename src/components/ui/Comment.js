@@ -17,8 +17,7 @@ const Comment = (props) => {
     return (
 
         <div>
-            <p>by {author}
-                on {formattedDate}</p>
+            <p>by {author} on {formattedDate}</p>
             <p>Vote: {voteScore}
             </p>
             <p>{body}</p>
