@@ -25,6 +25,7 @@ const Comment = (props) => {
             <button onClick={() => props.openModal(C.EDIT,props.comment)} className='icon-btn edit'>
                           <Edit />
                         </button>
+            <Delete onClick={() => props.onDeleteComment(props.comment.id)} className="delete"/>
             </p>
         </div>
     );

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {changeScore, deletePost,loadComments,updateOrCreateComment} from '../../actions'
+import {changeScore, deletePost,loadComments,updateOrCreateComment,deleteComment} from '../../actions'
 import PostDetail from '../ui/PostDetail'
 import {withRouter} from 'react-router'
 
@@ -21,7 +21,8 @@ const mapDispatchToProps = (dispatch) =>
         onChangeScore: (id, value) =>dispatch(changeScore(id, value)),
         onDeletePost: (id) =>dispatch(deletePost(id)),
         onLoadComments: (parentId) => dispatch( loadComments(parentId)),
-        onSaveComment: (comment) => dispatch( updateOrCreateComment(comment))
+        onSaveComment: (comment) => dispatch( updateOrCreateComment(comment)),
+        onDeleteComment: (commentId) => dispatch(deleteComment(commentId))
     });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(PostDetail);

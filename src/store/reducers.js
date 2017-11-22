@@ -48,6 +48,10 @@ export const comments = (state={}, action) =>{
             );
         case C.CREATE_COMMENT:
             return ({...state, [action.payload.parentId]:[...state[action.payload.parentId],action.payload]})
+        case C.DELETE_COMMENT:
+             return ({
+                ...state, [action.payload.parentId]:[...state[action.payload.parentId].filter(comment=>
+                comment.id !== action.payload.id)]})
         default:
             return state;
     }

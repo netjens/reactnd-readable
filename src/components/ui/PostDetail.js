@@ -65,7 +65,7 @@ class PostDetail extends Component {
                             pathname: '/edit',
                             post: post
                         }}><Edit/></Link>
-                        <Create onClick={() => this.openModal(C.CREATE)} className='edit' />
+                        <Create onClick={() => this.openModal(C.CREATE)} className="edit" />
                         <Delete onClick={() => this.onClickDelete(post.id)} className="delete"/>
                     </p>
                 </div>
@@ -73,7 +73,8 @@ class PostDetail extends Component {
                     {this.props.comments && this
                         .props
                         .comments
-                        .map((comment, rowIndex) => <Comment key={rowIndex} comment={comment} openModal={this.openModal}/>)}
+                        .map((comment, rowIndex) =>
+                         <Comment key={rowIndex} comment={comment} openModal={this.openModal} onDeleteComment={this.props.onDeleteComment}/>)}
                 </div>
 
                     

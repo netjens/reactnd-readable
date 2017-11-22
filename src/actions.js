@@ -7,7 +7,7 @@ export function loadCategories() {
         readableAPI
             .getAllCategories()
             .then(categories => {
-                dispatch({type: C.FETCH_CATEGORIES, payload: categories})
+                dispatch({ type: C.FETCH_CATEGORIES, payload: categories })
             })
 
     }
@@ -21,24 +21,24 @@ export function loadPosts(selectedCategory) {
             return readableAPI
                 .getAllPostsForCategory(selectedCategory)
                 .then(posts => {
-                    dispatch({type: C.FETCH_POSTS, payload: posts})
+                    dispatch({ type: C.FETCH_POSTS, payload: posts })
                 })
         } else {
             return readableAPI
                 .getAllPosts()
                 .then(posts => {
-                    dispatch({type: C.FETCH_POSTS, payload: posts})
+                    dispatch({ type: C.FETCH_POSTS, payload: posts })
                 })
         }
     }
 }
 
-export function loadComments(parentId){
-    return function(dispatch){
+export function loadComments(parentId) {
+    return function (dispatch) {
         return readableAPI.getComments(parentId)
-        .then(comments =>{
-            dispatch({type: C.FETCH_COMMENTS, parentId: parentId, payload:comments});
-        })
+            .then(comments => {
+                dispatch({ type: C.FETCH_COMMENTS, parentId: parentId, payload: comments });
+            })
     }
 }
 
@@ -70,7 +70,7 @@ export function changeScore(id, vote) {
         readableAPI
             .vote(id, vote)
             .then(post => {
-                dispatch({type: C.UPDATE_POST, payload: post})
+                dispatch({ type: C.UPDATE_POST, payload: post })
             });
     }
 }
@@ -80,7 +80,18 @@ export function deletePost(id) {
         readableAPI
             .deletePost(id)
             .then((post) => {
-                dispatch({type: C.DELETE_POST, id: post.id})
+                dispatch({ type: C.DELETE_POST, id: post.id })
+            })
+    }
+}
+
+
+export function deleteComment(id) {
+    return function (dispatch) {
+        readableAPI
+            .deleteComment(id)
+            .then(comment => {
+                dispatch({ type: C.DELETE_COMMENT, payload: comment })
             })
     }
 }
@@ -93,7 +104,7 @@ export function createPost(post) {
         readableAPI
             .createPost(post)
             .then((createdPost) => {
-                dispatch({type: C.CREATE_POST, payload: createdPost})
+                dispatch({ type: C.CREATE_POST, payload: createdPost })
             });
 
     }
@@ -104,7 +115,7 @@ export function updatePost(post) {
         readableAPI
             .updatePost(post)
             .then((updatedPost) => {
-                dispatch({type: C.UPDATE_POST, payload: updatedPost})
+                dispatch({ type: C.UPDATE_POST, payload: updatedPost })
             });
     }
 }
@@ -112,20 +123,20 @@ export function updatePost(post) {
 export function updateOrCreateComment(comment) {
     console.log("in UpdateOrCreateComment:" + JSON.stringify(comment));
     return function (dispatch) {
-        if(comment.id){
+        if (comment.id) {
             readableAPI
                 .updateComment(comment)
                 .then((updatedComment) => {
-                    dispatch({type: C.UPDATE_COMMENT, payload: updatedComment})
+                    dispatch({ type: C.UPDATE_COMMENT, payload: updatedComment })
                 });
-        }else{
+        } else {
             comment.timestamp = Date.now();
             comment.id = guid();
             readableAPI.createComment(comment)
-            .then((createdComment) => {
-      
-                dispatch({type: C.CREATE_COMMENT, payload: createdComment})
-            })
+                .then((createdComment) => {
+
+                    dispatch({ type: C.CREATE_COMMENT, payload: createdComment })
+                })
         }
     }
 }
