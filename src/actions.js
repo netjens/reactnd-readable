@@ -109,6 +109,16 @@ export function updatePost(post) {
     }
 }
 
+export function updateComment(comment) {
+    return function (dispatch) {
+        readableAPI
+            .updateComment(comment)
+            .then((updatedComment) => {
+                dispatch({type: C.UPDATE_COMMENT, payload: updatedComment})
+            });
+    }
+}
+
 function guid() {
     function s4() {
         return Math.floor((1 + Math.random()) * 0x10000)

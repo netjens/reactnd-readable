@@ -78,6 +78,18 @@ export const updatePost = (post) =>
   .then(
     res=>res.json())
 
+    export const updateComment = (comment) =>
+    fetch(`${api}/comments/${comment.id}`,{
+      method: 'PUT',
+       headers: {
+       ...headers,
+       'Content-Type': 'application/json'
+     },
+     body: JSON.stringify({body: comment.body, timestamp: comment.timestamp})
+    })
+   .then(
+     res=>res.json())
+
 
 
 /* export const get = (bookId) =>

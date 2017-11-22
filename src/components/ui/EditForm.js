@@ -41,7 +41,6 @@ class EditForm extends React.Component {
 
     handleChange(event) {
 
-        console.log("in handleChange: " + event.target.name + "..." + event.target.value);
         const target = event.target;
         const value = target.value;
         const name = target.name;

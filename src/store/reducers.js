@@ -22,7 +22,6 @@ export const allPosts = (state = [], action) => {
             return state.filter(post => action.id !== post.id);
         case C.UPDATE_POST:
             const updatedPost = action.payload;
-            console.log("entered update post new title" + updatedPost.title);
             return state.map(function (post) {
                 if (post.id === updatedPost.id) {
                     return updatedPost;
@@ -35,12 +34,18 @@ export const allPosts = (state = [], action) => {
 }
 
 export const comments = (state={}, action) =>{
-
+    console.log("im coments reducer: " + JSON.stringify(action.payload));
     switch(action.type) {
         case C.FETCH_COMMENTS:
             return {
                 ...state,
                 [action.parentId]:action.payload
+            }
+        case C.UPDATE_COMMENT:
+            return {
+                ...state,
+                [action.payload.parentId]:
+                [action.payload
             }
         default:
             return state;
