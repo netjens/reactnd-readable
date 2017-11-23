@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Comment from './Comment'
 import C from '../../constants'
-import {NavLink, Link} from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import ThumbsUp from 'react-icons/lib/ti/thumbs-up'
 import ThumbsDown from 'react-icons/lib/ti/thumbs-down'
 import Delete from 'react-icons/lib/ti/times'
@@ -28,115 +28,132 @@ class PostDetail extends Component {
         }
     }
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.closeModal = this.closeModal.bind(this);
-     
+
 
 
     }
 
     render() {
         const post = this.props.post;
-        const {title, author, voteScore, timestamp, body,commentCount} = this.props.post;
-        const {onDeletePost, onChangeScore} = this.props;
+        const { title, author, voteScore, timestamp, body, commentCount } = this.props.post;
+        const { onDeletePost, onChangeScore } = this.props;
         const disabled = this.state.comment.editMode == C.CREATE ? false : true;
         return (
             <div>
-                <div>
-                    <h1>{title}
-                    </h1>
-                    <p>by {author}
-                        on {getFormattedDate(timestamp)}</p>
-                    <p>Vote: {voteScore}
-                    </p>
-                    <p>Number of Comments: {commentCount} </p>
-                    <p>{body}</p>
-                </div>
-                <div>
-                    <p>
-                        <ThumbsUp
-                            onClick={() => onChangeScore(post.id, C.VOTE_UP)}
-                            className="thumbsUp"/>
-                        <ThumbsDown
-                            onClick={() => onChangeScore(post.id, C.VOTE_DOWN)}
-                            className="thumbsDown"/>
-                        <Link
-                            to={{
-                            pathname: '/edit',
-                            post: post
-                        }}><Edit/></Link>
-                        <Create onClick={() => this.openModal(C.CREATE)} className="edit" />
-                        <Delete onClick={() => this.onClickDelete(post.id)} className="delete"/>
-                    </p>
-                </div>
-                <div>
-                    {this.props.comments && this
-                        .props
-                        .comments
-                        .map((comment, rowIndex) =>
-                         <Comment key={rowIndex} comment={comment} openModal={this.openModal}
-                          onDeleteComment={this.onClickDeleteComment}
-                          onChangeCommentScore={this.props.onChangeCommentScore}/>)}
-                </div>
+                <div className="outer-form-container">
+                    <div className="form-header">
 
+                        <h1>{title}
+                        </h1>
+                    </div>
+                    <div className="form-container">
+                        <p className="text-grey">by {author}&nbsp;on&nbsp;{getFormattedDate(timestamp)}</p>
+                        <p>Vote: {voteScore}
+                        </p>
+                       
                     
-                <Modal
-                    className='modal'
-                    overlayClassName='overlay'
-                    isOpen={this.state.modalOpen}
-                    contentLabel='Modal'>
-             
-                    <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <label htmlFor="author">Author</label>
-                            <input
-                                name="author"
-                                type="text"
-                                value={this.state.comment.author}
-                                onChange={this.handleChange}
-                                disabled={disabled}
-                                required></input>
-                        </div>
-            
-                        <div>
+                        <p>{body}</p>
 
-                            <label htmlFor="body">Body</label>
-                            <textarea
-                                rows="4"
-                                cols="50"
-                                name="body"
-                                className="body"
-                                value={this.state.comment.body}
-                                onChange={this.handleChange}
-                                required/>
-                        </div>
+                        <p>
+                            <ThumbsUp
+                                onClick={() => onChangeScore(post.id, C.VOTE_UP)}
+                                className="thumbsUp" />
+                            <ThumbsDown
+                                onClick={() => onChangeScore(post.id, C.VOTE_DOWN)}
+                                className="thumbsDown" />
+                            <Link
+                                to={{
+                                    pathname: '/edit',
+                                    post: post
+                                }}><Edit /></Link>
+                            <Create onClick={() => this.openModal(C.CREATE)} className="edit" />
+                            <Delete onClick={() => this.onClickDelete(post.id)} className="delete" />
+                        </p>
+
+
+                    </div>
+                    </div>
+                    <div className="outer-form-container">
+                    <div className="form-header">
+                        <h2>Comments <span className="counter">{commentCount}</span></h2>
+                    </div>
+                    <div className="form-container">
+                        {this.props.comments && this
+                            .props
+                            .comments
+                            .map((comment, rowIndex) =>
+
+                                <ul className="comment-ul"> 
+                                    <li className="comment-li">                           
+                                <Comment key={rowIndex} comment={comment} openModal={this.openModal}
+                                    onDeleteComment={this.onClickDeleteComment}
+                                    onChangeCommentScore={this.props.onChangeCommentScore} />
+                                    </li>
+                                </ul>
+                            )}
+                    </div>
+                    </div>
+
+
+                    <Modal
+                        className="modal"
+                        overlayClassName='overlay'
+                        isOpen={this.state.modalOpen}
+                        contentLabel='Modal'>
                         <div>
-                            <button>save</button>
-                            <button onClick={this.closeModal}>cancel</button>
-                        </div>
-                    </form>
-                </Modal>
-                <p><Link to="/">back</Link></p>
-            </div>
-        )
+                        <form onSubmit={this.handleSubmit}>
+                            <p>
+                                <label className="text-grey" htmlFor="author">Author</label>
+                                <input className="input-field"
+                                    name="author"
+                                    type="text"
+                                    value={this.state.comment.author}
+                                    onChange={this.handleChange}
+                                    disabled={disabled}
+                                    required></input>
+                            </p>
+
+                            <p>
+
+                                <label className="text-grey" htmlFor="body">Comment Text</label>
+                                <textarea className="input-field"
+                                    rows="4"
+                                    cols="40"
+                                    name="body"
+                                    value={this.state.comment.body}
+                                    onChange={this.handleChange}
+                                    required />
+                            </p>
+                            <p>
+                                <button className="button">save</button>
+                                <button className="button" onClick={this.closeModal}>cancel</button>
+                            </p>
+                        </form>
+                    </div>
+                    </Modal>
+                    <p><Link to="/"><button className="button">back</button></Link></p>
+                </div>
+                )
     }
 
     onClickDelete = (id) => {
-        this
-            .props
-            .onDeletePost(id);
-        this
+                    this
+                        .props
+                        .onDeletePost(id);
+                this
             .props
             .history
             .push('/');
     }
 
     onClickDeleteComment = (id)=>{
-        console.log("in onClickDeleteComment");
-        this.props.onDeleteComment(id);
+                    console.log("in onClickDeleteComment");
+                this.props.onDeleteComment(id);
        this.props.onLoadPost(this.props.post.id);//to update the vote score from post
     }
 
@@ -149,8 +166,8 @@ class PostDetail extends Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault();
-        let comment = this.state.comment;
+                    e.preventDefault();
+                let comment = this.state.comment;
         comment.parentId = this.props.post.id;
             this
                 .props
@@ -161,15 +178,15 @@ class PostDetail extends Component {
     }
 
     closeModal() {
-        this.setState(() => ({modalOpen: false, id: null, body: null, author: null}))
-    }
+                    this.setState(() => ({ modalOpen: false, id: null, body: null, author: null }))
+                }
 
-    openModal = (editMode,comment) => {
+                openModal = (editMode,comment) => {
         if (comment == undefined) {
-            comment = {};
-        } 
+                    comment = {};
+                }
         comment.editMode = editMode;
-        
+
         this.setState(() => ({modalOpen: true, comment}))
     }
 

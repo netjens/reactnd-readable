@@ -55,25 +55,30 @@ class EditForm extends React.Component {
     render() {
         return (
 
-
+            <div className="outer-form-container">
+            <div className="form-header">
+            <h2>Edit Post</h2>
+        </div>
+        <div className="form-container">
             <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input type="text" name="title" value={this.state.title} onChange={this.handleChange} required />
+                <p>
+                    <label className="text-grey" htmlFor="title">Title</label>
+                    <input className="input-field" type="text" name="title" value={this.state.title} onChange={this.handleChange} required />
 
-                </div>
-                <div> <label htmlFor="body">Body</label>
-                    <textarea rows="4" cols="50" name="body" className="body" value={this.state.body} onChange={this.handleChange} required /></div>
-                <div>
-                    <label htmlFor="author">Author</label>
+                </p>
+                <p> <label className="text-grey" htmlFor="body">Text</label>
+                    <textarea className="input-field" rows="4" cols="50" name="body" className="body" value={this.state.body} onChange={this.handleChange} required />
+                </p>
+                <p>
+                    <label htmlFor="author" className="text-grey">Author</label>
 
-                    <input name="author" type="text" value={this.state.author} disabled required >
+                    <input className="input-field" name="author" type="text" value={this.state.author} disabled required >
 
                     </input>
-                </div>
-                <div>
-                    <label htmlFor="category">Category</label>
-                    <select name="category" value={this.state.category} disabled>
+                </p>
+                <p>
+                    <label className="text-grey" htmlFor="category">Category</label>
+                    <select className="input-field" name="category" value={this.state.category} disabled>
                         {this.props.categories.map(category => (
                         <option key={category.name} value={category.name}>{category.name}</option>
                     ))}
@@ -81,9 +86,11 @@ class EditForm extends React.Component {
                     
                     </select>
 
-                </div>
-                <button>save</button>
+                </p>
+                <button className="button">save</button>
             </form>
+            </div>
+            </div>
         )
     }
 }

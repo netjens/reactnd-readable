@@ -74,7 +74,7 @@ class PostList extends Component {
                 </div>
                 <div className="list-card list-margin">
                 <table>
-                    <thead>
+                    <thead className="teal">
                         <tr className="list-padding-16">
                             <th>Title</th>
                             <th>Author</th>
