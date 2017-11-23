@@ -48,13 +48,32 @@ export function loadComments(parentId) {
     return function (dispatch) {
         return readableAPI.getComments(parentId)
             .then(comments => {
-                dispatch({ type: C.FETCH_COMMENTS, parentId: parentId, payload: comments });
+                dispatch({ type: C.FETCH_COMMENTS, parentId: parentId, payload: sort(comments,"timestamp",C.ORDER_UP) });
             })
     }
 }
 
+
+function sort(objects,by,dir){
+ const compResult = (dir === C.ORDER_UP)
+        ? 1
+        : -1;
+
+    const compare = (a, b) =>{
+        if (a[by] > b[by]) {
+            return compResult;
+        }
+        if (a[by] < b[by]) {
+            return compResult * -1;
+        }
+        return 0
+    }
+    return objects.sort(compare);
+
+}
+
 export function sortPosts(posts, by, dir) {
-    const compResult = (dir === C.ORDER_UP)
+   /* const compResult = (dir === C.ORDER_UP)
         ? 1
         : -1;
 
@@ -67,11 +86,11 @@ export function sortPosts(posts, by, dir) {
         }
         return 0
 
-    }
+    }*/
 
     return ({
         type: C.FETCH_POSTS,
-        payload: posts.sort(compare)
+        payload: sort(posts,by,dir)
     });
 
 }
