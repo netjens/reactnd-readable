@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CreateEditForm = (props) => {
+const CreateForm = (props) => {
 
     const { onCreatePost, categories } = props;
     console.log("props=" + JSON.stringify(props))
@@ -54,4 +54,4 @@ const CreateEditForm = (props) => {
     )
 }
 
-export default CreateEditForm;
+export default CreateForm;

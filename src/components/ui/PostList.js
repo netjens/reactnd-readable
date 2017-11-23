@@ -57,7 +57,8 @@ class PostList extends Component {
     render() {
         console.log("rerender");
         return (
-            <div>
+            <div className="outer-div">
+                <div className="list-card list-margin panel category-panel">
                 <h2>Categories</h2>
                 <ul>
                      <li key="all"><NavLink to={"/"}>All</NavLink></li>
@@ -70,9 +71,11 @@ class PostList extends Component {
                             ))
                     }
                 </ul>
+                </div>
+                <div className="list-card list-margin">
                 <table>
                     <thead>
-                        <tr>
+                        <tr className="list-padding-16">
                             <th>Title</th>
                             <th>Author</th>
                             <th>Number of commments</th>
@@ -89,10 +92,11 @@ class PostList extends Component {
                             .map((post, rowIndex) => <PostRow key={rowIndex} post={post} {...this.props} />)}
                     </tbody>
                 </table>
+                </div>
                 <p>
                     <Link
                         to="/create"
-                    >Add Post</Link></p>
+                    ><button className="button">Add Post</button></Link></p>
             </div>
         )
     }

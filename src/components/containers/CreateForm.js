@@ -2,7 +2,7 @@
 
 import { connect } from 'react-redux'
 import {createPost} from '../../actions'
-import CreateEditForm from '../ui/CreateEditForm'
+import CreateForm from '../ui/CreateForm'
 import { withRouter } from 'react-router'
 
 const mapStateToProps = (state, props) =>
@@ -18,6 +18,6 @@ const mapDispatchToProps = (dispatch) =>
 );
 
 
-const Container = connect(mapStateToProps,mapDispatchToProps)(CreateEditForm);
+const Container = connect(mapStateToProps,mapDispatchToProps)(CreateForm);
 
 export default withRouter(Container)

@@ -29,3 +29,63 @@
   color: blue;
   cursor: pointer;
 }
+
+body {
+    font-family: "Raleway", sans-serif;
+}
+
+th, td {
+    padding: 8px 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.list-margin {
+    margin: 16px!important;
+}
+
+.list-card {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    box-sizing: inherit;
+}
+
+.list-padding-16 {
+    padding-top: 16px!important;
+    padding-bottom: 16px!important;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr:hover {background-color: #f5f5f5;}
+
+.outer-div{
+  max-width: 1300px;
+}
+
+.category-panel{
+  max-width: 200px;
+}
+
+.panel {
+    padding: 0.01em 16px;
+}
+
+.button {
+  padding: 12px 24px!important;
+  border: 1px solid #ccc!important;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-block;
+  margin: 16px;
+
+}
+
+.button:hover {
+    color: #000!important;
+    background-color: #fff!important;
+}
