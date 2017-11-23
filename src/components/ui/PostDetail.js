@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Comment from './Comment'
 import C from '../../constants'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ThumbsUp from 'react-icons/lib/ti/thumbs-up'
 import ThumbsDown from 'react-icons/lib/ti/thumbs-down'
 import Delete from 'react-icons/lib/ti/times'
@@ -41,8 +41,8 @@ class PostDetail extends Component {
     render() {
         const post = this.props.post;
         const { title, author, voteScore, timestamp, body, commentCount } = this.props.post;
-        const { onDeletePost, onChangeScore } = this.props;
-        const disabled = this.state.comment.editMode == C.CREATE ? false : true;
+        const {  onChangeScore } = this.props;
+        const disabled = this.state.comment.editMode === C.CREATE ? false : true;
         return (
             <div>
                 <div className="outer-form-container">
@@ -89,8 +89,8 @@ class PostDetail extends Component {
                             .map((comment, rowIndex) =>
 
                                 <ul className="comment-ul"> 
-                                    <li className="comment-li">                           
-                                <Comment key={rowIndex} comment={comment} openModal={this.openModal}
+                                    <li className="comment-li" key={rowIndex}>                           
+                                <Comment  comment={comment} openModal={this.openModal}
                                     onDeleteComment={this.onClickDeleteComment}
                                     onChangeCommentScore={this.props.onChangeCommentScore} />
                                     </li>
@@ -152,7 +152,6 @@ class PostDetail extends Component {
     }
 
     onClickDeleteComment = (id)=>{
-                    console.log("in onClickDeleteComment");
                 this.props.onDeleteComment(id);
        this.props.onLoadPost(this.props.post.id);//to update the vote score from post
     }
@@ -182,7 +181,7 @@ class PostDetail extends Component {
                 }
 
                 openModal = (editMode,comment) => {
-        if (comment == undefined) {
+        if (comment === undefined) {
                     comment = {};
                 }
         comment.editMode = editMode;

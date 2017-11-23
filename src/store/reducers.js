@@ -34,7 +34,6 @@ export const allPosts = (state = [], action) => {
 }
 
 export const comments = (state={}, action) =>{
-    console.log("im coments reducer: " + JSON.stringify(action.payload));
     switch(action.type) {
         case C.FETCH_COMMENTS:
             return {

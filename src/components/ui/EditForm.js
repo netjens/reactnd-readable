@@ -67,7 +67,8 @@ class EditForm extends React.Component {
 
                 </p>
                 <p> <label className="text-grey" htmlFor="body">Text</label>
-                    <textarea className="input-field" rows="4" cols="50" name="body" className="body" value={this.state.body} onChange={this.handleChange} required />
+                    <textarea className="input-field" rows="4" cols="50" name="body" 
+                    value={this.state.body} onChange={this.handleChange} required />
                 </p>
                 <p>
                     <label htmlFor="author" className="text-grey">Author</label>

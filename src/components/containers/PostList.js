@@ -6,7 +6,6 @@ import { withRouter } from 'react-router'
 
 const mapStateToProps = (state, props) =>
 {
-    console.log("in mapstatetoprops" + JSON.stringify(props.match.params));
 return ({
     posts: state.allPosts,
     order: state.order,

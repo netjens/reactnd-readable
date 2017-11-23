@@ -4,7 +4,6 @@ import PostDetail from '../ui/PostDetail'
 import {withRouter} from 'react-router'
 
 const mapStateToProps = (state, props) => {
-    console.log("in mapStateToProps");
 
     const selectedPost = state
         .allPosts

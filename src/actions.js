@@ -110,7 +110,6 @@ export function changeCommentScore(id, vote) {
         readableAPI
             .voteComment(id, vote)
             .then(post => {
-                console.log("in changeCommentScore:" + JSON.stringify(post) + " mit vote=" + vote);
                 dispatch({ type: C.UPDATE_COMMENT, payload: post })
             });
     }
@@ -164,7 +163,6 @@ export function updatePost(post) {
 }
 
 export function updateOrCreateComment(comment) {
-    console.log("in UpdateOrCreateComment:" + JSON.stringify(comment));
     return function (dispatch) {
         if (comment.id) {
             readableAPI

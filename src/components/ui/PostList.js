@@ -55,7 +55,6 @@ class PostList extends Component {
 
 
     render() {
-        console.log("rerender");
         return (
             <div className="outer-div">
                 <div className="list-card list-margin panel category-panel">

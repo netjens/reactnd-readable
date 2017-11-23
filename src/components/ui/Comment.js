@@ -3,7 +3,6 @@ import ThumbsUp from 'react-icons/lib/ti/thumbs-up'
 import ThumbsDown from 'react-icons/lib/ti/thumbs-down'
 import Delete from 'react-icons/lib/ti/times'
 import Edit from 'react-icons/lib/ti/edit'
-import { Link } from 'react-router-dom'
 import '../../stylesheets/PostDetail.css'
 import C from '../../constants'
 

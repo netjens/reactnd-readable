@@ -3,11 +3,10 @@ import React from 'react'
 const CreateForm = (props) => {
 
     const { onCreatePost, categories } = props;
-    console.log("props=" + JSON.stringify(props))
     let _title, _body, _author, _category;
 
     const submitPost = e => {
-        console.log("in submit post");
+
         e.preventDefault();
         onCreatePost({
             title: _title.value,
