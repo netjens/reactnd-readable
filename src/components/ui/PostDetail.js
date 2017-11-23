@@ -119,6 +119,7 @@ class PostDetail extends Component {
                         </div>
                     </form>
                 </Modal>
+                <p><Link to="/">back</Link></p>
             </div>
         )
     }
