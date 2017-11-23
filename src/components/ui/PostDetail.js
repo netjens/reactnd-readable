@@ -78,7 +78,7 @@ class PostDetail extends Component {
                         .comments
                         .map((comment, rowIndex) =>
                          <Comment key={rowIndex} comment={comment} openModal={this.openModal}
-                          onDeleteComment={this.onClickDeleteComment(comment.id)}
+                          onDeleteComment={this.onClickDeleteComment}
                           onChangeCommentScore={this.props.onChangeCommentScore}/>)}
                 </div>
 
@@ -134,7 +134,9 @@ class PostDetail extends Component {
     }
 
     onClickDeleteComment = (id)=>{
-        this.props.onLoadPost(this.props.post.id);//to update the vote score from post
+        console.log("in onClickDeleteComment");
+        this.props.onDeleteComment(id);
+       this.props.onLoadPost(this.props.post.id);//to update the vote score from post
     }
 
     handleChange(event) {

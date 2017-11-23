@@ -28,7 +28,7 @@ const Comment = (props) => {
                     onClick={() => props.onChangeCommentScore(id, C.COMMENT_VOTE_DOWN)}
                     className="thumbsDown" />
                 <Edit onClick={() => props.openModal(C.EDIT, props.comment)} className='edit' />
-                <Delete onClick={() => props.onDeleteComment(props.comment.id)} className="delete" />
+                <Delete onClick={() => props.onDeleteComment(id)} className="delete" />
             </p>
         </div>
     );
