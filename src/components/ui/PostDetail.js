@@ -13,11 +13,15 @@ import Create from 'react-icons/lib/ti/document-add'
 class PostDetail extends Component {
 
     componentDidMount() {
+        if(this.props.post!==undefined){
         this
             .props
             .onLoadComments(this.props.post.id);
+        }
 
     }
+
+
 
     state = {
         modalOpen: false,
@@ -39,6 +43,10 @@ class PostDetail extends Component {
     }
 
     render() {
+        if(this.props.post===undefined){
+          return <h3>No Post availabe with Id: {this.props.match.params.post_id} </h3>
+        }
+
         const post = this.props.post;
         const { title, author, voteScore, timestamp, body, commentCount } = this.props.post;
         const {  onChangeScore } = this.props;
