@@ -97,8 +97,8 @@ class PostDetail extends Component {
                             .comments
                             .map((comment, rowIndex) =>
 
-                                <ul className="comment-ul"> 
-                                    <li className="comment-li" key={rowIndex}>                           
+                                <ul className="comment-ul" key={rowIndex}> 
+                                    <li className="comment-li" >                           
                                 <Comment  comment={comment} openModal={this.openModal}
                                     onDeleteComment={this.onClickDeleteComment}
                                     onChangeCommentScore={this.props.onChangeCommentScore} />
