@@ -5,16 +5,14 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'
 import reducer from './store/reducers'
 import { createStore, applyMiddleware, compose } from 'redux'
+import {createLogger} from 'redux-logger'
 import thunk from 'redux-thunk'
 import routes from './routes'
 
-const logger = store => next => action => {
-  console.group(action.type)
-  console.info('dispatching', action)
-  let result = next(action)
-  console.groupEnd(action.type)
-  return result
-}
+const logger = createLogger({
+ collapsed: (getState, action, logEntry)=>true
+});
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
