@@ -44,7 +44,8 @@ class PostDetail extends Component {
 
     render() {
         if(this.props.post===undefined){
-          return <h3>No Post availabe with Id: {this.props.match.params.post_id} </h3>
+          return (<div><h3>No Post availabe with Id: {this.props.match.params.post_id} </h3>
+             <p><Link to="/"><button className="button">back</button></Link></p></div>)
         }
 
         const post = this.props.post;
