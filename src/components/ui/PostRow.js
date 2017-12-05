@@ -15,7 +15,7 @@ const PostRow = (props) => {
     const formattedDate = date.toLocaleDateString() + " " + date.toLocaleTimeString();
     const detailLink = post.category + "/" + post.id;
     return (
-        <tr>
+        <tr className="postRow">
             <td>{post.title}</td>
             <td>{post.author}</td>
             <td>{post.commentCount}</td>
