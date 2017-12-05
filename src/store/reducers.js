@@ -22,7 +22,10 @@ export const allPosts = (state = [], action) => {
             return state.filter(post => action.id !== post.id);
         case C.UPDATE_POST:
             const updatedPost = action.payload;
-            return state.map(function (post) {
+            if(state.length===0){
+                return [updatedPost];
+            }
+            return state.map(post => {
                 if (post.id === updatedPost.id) {
                     return updatedPost;
                 }
