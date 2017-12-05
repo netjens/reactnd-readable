@@ -13,10 +13,11 @@ import Create from 'react-icons/lib/ti/document-add'
 class PostDetail extends Component {
 
     componentDidMount() {
-        if(this.props.post!==undefined){
-        this
-            .props
-            .onLoadComments(this.props.post.id);
+        if (this.props.post !== undefined) {
+            this.props.onLoadComments(this.props.post.id);
+        }else{
+            this.props.onLoadPost(this.props.match.params.post_id);
+            this.props.onLoadComments(this.props.match.params.post_id);
         }
 
     }
@@ -43,14 +44,14 @@ class PostDetail extends Component {
     }
 
     render() {
-        if(this.props.post===undefined){
-          return (<div><h3>No Post availabe with Id: {this.props.match.params.post_id} </h3>
-             <p><Link to="/"><button className="button">back</button></Link></p></div>)
+        if (this.props.post === undefined) {
+            return (<div><h3>No Post availabe with Id: {this.props.match.params.post_id} </h3>
+                <p><button onClick={this.props.history.goBack} className="button">back</button></p></div>)
         }
 
         const post = this.props.post;
         const { title, author, voteScore, timestamp, body, commentCount } = this.props.post;
-        const {  onChangeScore } = this.props;
+        const { onChangeScore } = this.props;
         const disabled = this.state.comment.editMode === C.CREATE ? false : true;
         return (
             <div>
@@ -64,8 +65,8 @@ class PostDetail extends Component {
                         <p className="text-grey">by {author}&nbsp;on&nbsp;{getFormattedDate(timestamp)}</p>
                         <p>Vote: {voteScore}
                         </p>
-                       
-                    
+
+
                         <p>{body}</p>
 
                         <p>
@@ -86,8 +87,8 @@ class PostDetail extends Component {
 
 
                     </div>
-                    </div>
-                    <div className="outer-form-container">
+                </div>
+                <div className="outer-form-container">
                     <div className="form-header">
                         <h2>Comments <span className="counter">{commentCount}</span></h2>
                     </div>
@@ -97,24 +98,24 @@ class PostDetail extends Component {
                             .comments
                             .map((comment, rowIndex) =>
 
-                                <ul className="comment-ul" key={rowIndex}> 
-                                    <li className="comment-li" >                           
-                                <Comment  comment={comment} openModal={this.openModal}
-                                    onDeleteComment={this.onClickDeleteComment}
-                                    onChangeCommentScore={this.props.onChangeCommentScore} />
+                                <ul className="comment-ul" key={rowIndex}>
+                                    <li className="comment-li" >
+                                        <Comment comment={comment} openModal={this.openModal}
+                                            onDeleteComment={this.onClickDeleteComment}
+                                            onChangeCommentScore={this.props.onChangeCommentScore} />
                                     </li>
                                 </ul>
                             )}
                     </div>
-                    </div>
+                </div>
 
 
-                    <Modal
-                        className="modal"
-                        overlayClassName='overlay'
-                        isOpen={this.state.modalOpen}
-                        contentLabel='Modal'>
-                        <div>
+                <Modal
+                    className="modal"
+                    overlayClassName='overlay'
+                    isOpen={this.state.modalOpen}
+                    contentLabel='Modal'>
+                    <div>
                         <form onSubmit={this.handleSubmit}>
                             <p>
                                 <label className="text-grey" htmlFor="author">Author</label>
@@ -144,25 +145,25 @@ class PostDetail extends Component {
                             </p>
                         </form>
                     </div>
-                    </Modal>
-                    <p><Link to="/"><button className="button">back</button></Link></p>
-                </div>
-                )
+                </Modal>
+                <p><Link to="/"><button className="button">back</button></Link></p>
+            </div>
+        )
     }
 
     onClickDelete = (id) => {
-                    this
-                        .props
-                        .onDeletePost(id);
-                this
+        this
+            .props
+            .onDeletePost(id);
+        this
             .props
             .history
             .push('/');
     }
 
-    onClickDeleteComment = (id)=>{
-                this.props.onDeleteComment(id);
-       this.props.onLoadPost(this.props.post.id);//to update the vote score from post
+    onClickDeleteComment = (id) => {
+        this.props.onDeleteComment(id);
+        this.props.onLoadPost(this.props.post.id);//to update the vote score from post
     }
 
     handleChange(event) {
@@ -170,32 +171,32 @@ class PostDetail extends Component {
         const value = target.value;
         const name = target.name;
 
-        this.setState({...this.state,comment:{...this.state.comment,[name]:value}});
+        this.setState({ ...this.state, comment: { ...this.state.comment, [name]: value } });
     }
 
     handleSubmit(e) {
-                    e.preventDefault();
-                let comment = this.state.comment;
+        e.preventDefault();
+        let comment = this.state.comment;
         comment.parentId = this.props.post.id;
-            this
-                .props
-                .onSaveComment(comment);
+        this
+            .props
+            .onSaveComment(comment);
 
         this.closeModal();
         this.props.onLoadPost(this.props.post.id);//to update the vote score from post
     }
 
     closeModal() {
-                    this.setState(() => ({ modalOpen: false, id: null, body: null, author: null }))
-                }
+        this.setState(() => ({ modalOpen: false, id: null, body: null, author: null }))
+    }
 
-                openModal = (editMode,comment) => {
+    openModal = (editMode, comment) => {
         if (comment === undefined) {
-                    comment = {};
-                }
+            comment = {};
+        }
         comment.editMode = editMode;
 
-        this.setState(() => ({modalOpen: true, comment}))
+        this.setState(() => ({ modalOpen: true, comment }))
     }
 
 }
