@@ -11,6 +11,16 @@ export const categories = (state = [], action) => {
 
 }
 
+export const order = (state = {by: "timestamp", dir:C.ORDER_DOWN}, action) =>{
+    switch(action.type){
+        case C.SORT_POSTS:
+            return  action.payload;
+            
+        default:
+            return state;
+    }
+}
+
 export const allPosts = (state = [], action) => {
     switch (action.type) {
         case C.FETCH_POSTS:
@@ -62,4 +72,4 @@ export const comments = (state={}, action) =>{
 
 
 
-export default combineReducers({categories, allPosts,comments});
+export default combineReducers({categories, allPosts,comments,order});

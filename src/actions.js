@@ -48,52 +48,11 @@ export function loadComments(parentId) {
     return function (dispatch) {
         return readableAPI.getComments(parentId)
             .then(comments => {
-                dispatch({ type: C.FETCH_COMMENTS, parentId: parentId, payload: sort(comments,"timestamp",C.ORDER_UP) });
+                dispatch({ type: C.FETCH_COMMENTS, parentId: parentId, payload: comments });
             })
     }
 }
 
-
-function sort(objects,by,dir){
- const compResult = (dir === C.ORDER_UP)
-        ? 1
-        : -1;
-
-    const compare = (a, b) =>{
-        if (a[by] > b[by]) {
-            return compResult;
-        }
-        if (a[by] < b[by]) {
-            return compResult * -1;
-        }
-        return 0
-    }
-    return objects.sort(compare);
-
-}
-
-export function sortPosts(posts, by, dir) {
-   /* const compResult = (dir === C.ORDER_UP)
-        ? 1
-        : -1;
-
-    function compare(a, b) {
-        if (a[by] > b[by]) {
-            return compResult;
-        }
-        if (a[by] < b[by]) {
-            return compResult * -1;
-        }
-        return 0
-
-    }*/
-
-    return ({
-        type: C.FETCH_POSTS,
-        payload: sort(posts,by,dir)
-    });
-
-}
 
 export function changeScore(id, vote) {
     return function (dispatch) {
@@ -179,6 +138,12 @@ export function updateOrCreateComment(comment) {
                     dispatch({ type: C.CREATE_COMMENT, payload: createdComment })
                 })
         }
+    }
+}
+
+export function sortPosts(orderBy, orderDir){
+    return function(dispatch){
+        dispatch({type: C.SORT_POSTS, payload: { by: orderBy, dir: orderDir}})
     }
 }
 

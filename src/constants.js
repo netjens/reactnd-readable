@@ -10,6 +10,7 @@ const constants = {
     UPDATE_COMMENT: "UPDATE_COMMENT",
     CREATE_COMMENT: "CREATE_COMMENT",
     DELETE_COMMENT: "DELETE_COMMENT",
+    SORT_POSTS: "SORT_POSTS",
 
     //other constants
     VOTE_UP: "upVote",

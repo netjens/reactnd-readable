@@ -7,36 +7,33 @@ import '../../stylesheets/PostList.css';
 
 class PostList extends Component {
 
-    state = {
-        orderDir: null,
-        orderBy: null
-    }
+
 
     componentDidMount() {
         this.props.onLoadCategories();
         this
             .props
             .onLoadPosts(this.props.selectedCategory);
-        this.onOrderBy("voteScore");
 
     }
 
 
-    onOrderBy(by) {
-        const { orderBy, orderDir } = this.state;
+
+
+    onOrderBy(newBy) {
+        const {  dir,by } = this.props.order;
         let newDir;
-        if (orderBy == null || orderBy !== by) {
+        if (by == null || by !== newBy) {
             newDir = C.ORDER_UP; //initally always ascending
         } else {
 
-            newDir = (orderDir === C.ORDER_UP)
+            newDir = (dir === C.ORDER_UP)
                 ? C.ORDER_DOWN
                 : C.ORDER_UP;
         }
-        this.setState({ orderDir: newDir, orderBy: by });
         this
             .props
-            .onSort(this.props.posts, by, newDir);
+            .onSort( newBy, newDir);
 
     }
 
